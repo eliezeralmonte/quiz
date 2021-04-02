@@ -1,0 +1,105 @@
+:root {
+    --background-color: white;
+    --border-color: #606141;
+    --global-width: 40%;
+    --global-title-size: 50px;
+    --global-paragraph-size: 25px;
+}
+
+header {
+    width: var(--global-width);
+}
+
+body {
+    margin: 0 auto;
+    position: relative;
+    background-image: url("images/halo-infinite-bcakground.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+main {
+    width: var(--global-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 600px;
+    padding: 20px;
+
+}
+
+.titleClass {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--global-title-size);
+    width: 100%;
+    background-color:white;
+    color: #5C3514;
+    padding: 5px;
+    text-align: center;
+}
+
+.containerClass {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 550px;
+    background-color:rgba(0, 0, 0, 0.75);
+    border: solid 5px var(--border-color);
+    border-width: 2px;
+    border-color: var(--border-color);
+    padding:20px;
+}
+
+.containerClass p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--global-paragraph-size);
+    color: white;
+}
+
+.containerClass h2 {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+.containerClass h3 {
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+
+.buttonClass {
+    height: 40px;
+    width: fit-content;
+    background-color:rgba(0, 0, 0, 0.95);
+    border: solid 5px var(--border-color);
+    border-width: 1px;
+    border-color: var(--border-color);
+    padding:5px;
+    color: white;
+}
+.buttonClass:hover {
+    background-color:rgba(255, 255, 255, 0.95);
+    color: black;
+}
+
+.timerClass {
+
+}
+
+.quiz-introClass {
+    
+}
+
+.questionsClass {
+
+}
+
+.resultsClass {
+
+}
+
+.highscoresClass {
+
+}
+

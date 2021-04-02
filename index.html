@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 "/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <!-- styling -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link href="assets/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"> <!--font-family: 'Open Sans', sans-serif; -->
+    <title>My First Coding Quiz</title>
+</head>
+<body>
+    <main>
+        <header>
+            <button id="highScoresButton" class="buttonClass" type="button">VIEW HIGH SCORES</button>
+            <p id="timer" class="timer"></p>
+        </header>
+        <div id="intro" class="containerClass" style="display: block">
+            <div class="titleClass">INFINITE CODING QUIZ</div>
+            <p>This is a coding quiz that will put to test your knowledge of basic Javascript!</p>
+            <button id="startButton" type="button" class="buttonClass">START QUIZ</button>
+        </div>
+        <div id="quizQuestionContainer" class="containerClass questions" style="display: none">
+            <h2 id="question"></h2>
+            <ul id="answerList" class="display: flex; flex-direction: column;"></ul>
+            <button id="submitButton" type="button" class="buttonClass" style="display: none">Submit</button>
+            <h3 id="answersCount"></h3>
+        </div>
+        <div id="results" class="containerClass results" style="display: none">
+        </div>
+        <div id="highScores" class="containerClass highscores" style="display: none">
+        </div>
+    </main>
+    <script src="assets/script.js"></script>
+</body>
+</html>
