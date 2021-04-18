@@ -43,6 +43,23 @@ main {
 
 }
 
+button {
+    height: 40px;
+    width: fit-content;
+    background-color:rgba(0, 0, 0, 0.95);
+    border: solid 5px var(--border-color);
+    border-width: 1px;
+    border-color: var(--border-color);
+    padding:10px;
+    margin: 10px;
+    color: white;
+}
+
+button:hover {
+    background-color:rgba(255, 255, 255, 0.95);
+    color: black;
+}
+
 .titleClass {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--global-title-size);
@@ -100,23 +117,6 @@ main {
     color: white;
 }
 .buttonClass:hover {
-    background-color:rgba(255, 255, 255, 0.95);
-    color: black;
-}
-
-button {
-    height: 40px;
-    width: fit-content;
-    background-color:rgba(0, 0, 0, 0.95);
-    border: solid 5px var(--border-color);
-    border-width: 1px;
-    border-color: var(--border-color);
-    padding:10px;
-    margin: 10px;
-    color: white;
-}
-
-button:hover {
     background-color:rgba(255, 255, 255, 0.95);
     color: black;
 }

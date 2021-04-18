@@ -21,19 +21,20 @@ var answerResponseEl = document.querySelector("#answerResponse");
 
 //results//
 var resultsContainerEl = document.querySelector("#resultsContainer");
-var highScoresContainerEl = document.querySelector("#highScoresContainer");
+var userScoreEl = document.querySelector("#userScore");
+var questionLengthEl = document.querySelector("#questionsLength");
 
 // global variables || questions array or object//
-var userScore = 0;
+var userScoreEl = 0;
 var currentQuestion = 0;
-var time = 0;
+var time = 60;
 
 //questions array
 var questions = [
     {   
         question: "What are the main primitive data types in Javascript?",
         answers: ["Strings, Numbers, BigInts, Boolean, Undefined, Symbol, and Null", "Ghosts, Warhogs, Tanks and Banshees", "Blue Team, Noble Team, ODST, and Spartans", "Paragraphs, Text Blocks, Equations, and Functions"], 
-        correct: "String, Number, Bigint, Boolean, Undefined, Symbol, and Null"
+        correct: "Strings, Numbers, BigInts, Boolean, Undefined, Symbol, and Null"
     },
     {
         question: "??", 
@@ -42,14 +43,17 @@ var questions = [
     }
 ];
 
+var questionLengthEl = questions.length;
+
 // functions
 //------------------------------//
 function timerFunc(){
-    let setTimer = setInterval(function(){
-        time++;
+    let setTimer = setInterval( function() {
+        time--;
         timerEl.innerHTML = time;
-        if(time === 60) {
-            clearInterval(setTimer)
+        if(time === 0) {
+            displayResults();
+            clearInterval(setTimer);
         };
     }, 1000);
 };
@@ -92,17 +96,26 @@ questionEl.innerHTML = questions[currentQuestion].question;
 
     
 };
- 
+
+// this function will add or deduct points to user Score and will add 15 secs to timerFunc
 function compareResponse () {
     // compares answerChoices to 'correct' property within question object    
     if(this.innerHTML === questions[currentQuestion].correct) {
-        userScore ++;
-        answerResponseEl.innerHTML = `Correct!`
+        userScoreEl ++;
+        time += 10;
+        answerResponseEl.innerHTML = `Correct!`;
+        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl}`;
     } else {
         answerResponseEl.innerHTML = `False!`
+        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl}`;
+        
     }
-    console.log(userScore);
 };
+
+function displayResults () {
+    quizQuestionContainerEl.setAttribute("style", "display: block");
+
+}
 
 // event listener functions//
 startButtonEl.addEventListener("click", startQuiz);
