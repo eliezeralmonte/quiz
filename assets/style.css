@@ -1,13 +1,27 @@
 :root {
     --background-color: white;
     --border-color: #606141;
-    --global-width: 40%;
+    --global-width: 50%;
     --global-title-size: 50px;
-    --global-paragraph-size: 25px;
+    --global-paragraph-size: 15px;
 }
 
 header {
-    width: var(--global-width);
+    width: 100%;
+}
+
+header button {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--global-paragraph-size);
+    color: white;
+    float:left;
+}
+
+header p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--global-paragraph-size);
+    color: white;
+    float:right;
 }
 
 body {
@@ -57,6 +71,12 @@ main {
     color: white;
 }
 
+.containerClass li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: var(--global-paragraph-size);
+    color: white;
+}
+
 .containerClass h2 {
     font-family: 'Open Sans', sans-serif;
     color: white;
@@ -75,7 +95,8 @@ main {
     border: solid 5px var(--border-color);
     border-width: 1px;
     border-color: var(--border-color);
-    padding:5px;
+    padding:10px;
+    margin: 10px;
     color: white;
 }
 .buttonClass:hover {
@@ -83,17 +104,38 @@ main {
     color: black;
 }
 
-.timerClass {
+button {
+    height: 40px;
+    width: fit-content;
+    background-color:rgba(0, 0, 0, 0.95);
+    border: solid 5px var(--border-color);
+    border-width: 1px;
+    border-color: var(--border-color);
+    padding:10px;
+    margin: 10px;
+    color: white;
+}
 
+button:hover {
+    background-color:rgba(255, 255, 255, 0.95);
+    color: black;
+}
+
+.questionsClass {
+    display:flex;
+    flex-direction: column;
+
+}
+
+.timer {
+    float: right;
 }
 
 .quiz-introClass {
     
 }
 
-.questionsClass {
 
-}
 
 .resultsClass {
 

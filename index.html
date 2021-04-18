@@ -15,23 +15,26 @@
     <main>
         <header>
             <button id="highScoresButton" class="buttonClass" type="button">VIEW HIGH SCORES</button>
-            <p id="timer" class="timer"></p>
+            <p id="timer" class="timer"> </p>
         </header>
-        <div id="intro" class="containerClass" style="display: block">
+        <section id="intro" class="containerClass" style="display: block">
             <div class="titleClass">INFINITE CODING QUIZ</div>
-            <p>This is a coding quiz that will put to test your knowledge of basic Javascript!</p>
+            <p>This is a coding quiz that will put to test your knowledge of basic Javascript, you have 1 minute to answer all questions correctly!</p>
+            <p>Click START QUIZ to begin!</p>
             <button id="startButton" type="button" class="buttonClass">START QUIZ</button>
-        </div>
-        <div id="quizQuestionContainer" class="containerClass questions" style="display: none">
+        </section>
+        <section id="quizQuestionContainer" class="containerClass questions" style="display: none">
             <h2 id="question"></h2>
-            <ul id="answerList" class="display: flex; flex-direction: column;"></ul>
-            <button id="submitButton" type="button" class="buttonClass" style="display: none">Submit</button>
-            <h3 id="answersCount"></h3>
-        </div>
-        <div id="results" class="containerClass results" style="display: none">
-        </div>
-        <div id="highScores" class="containerClass highscores" style="display: none">
-        </div>
+            <div class="questionsClass">
+            </div>
+            <p id="progress"></p>
+            <br>
+            <p id="answerResponse"></p>
+        </section>
+        <section id="resultsContainer" class="containerClass results" style="display: none">
+        </section>
+        <section id="highScoresContainer" class="containerClass highscores" style="display: none">
+        </section>
     </main>
     <script src="assets/script.js"></script>
 </body>
