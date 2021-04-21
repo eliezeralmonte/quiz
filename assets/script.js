@@ -58,7 +58,7 @@ console.log(questions.length);
 
 // functions
 //------------------------------------------------------------------------------------------------------------------------------------//
-function timerFunc(){
+const timerFunc = () => {
     let setTimer = setInterval( function() {
         time--;
         timerEl.innerHTML = time;
@@ -70,7 +70,7 @@ function timerFunc(){
 };
 
 // startQuiz function will hide the intro container and display the Quiz Question Container
-function startQuiz() {
+const startQuiz = () => {
     //starts timer
     timerFunc();
     // this will hide Intro container and display quiz question container
@@ -81,12 +81,9 @@ function startQuiz() {
 };
 
 // function to render question && answers //
-function renderQuestionContainer() {
-    
-
-
+const renderQuestionContainer = () => {
 //checks if question number has been reached -- 
-if( currentQuestion === questions.length) {
+if (currentQuestion === questions.length) {
     displayResults ();
 } else { //display current question
         questionEl.innerHTML = questions[currentQuestion].question;
@@ -94,7 +91,6 @@ if( currentQuestion === questions.length) {
         //display answer choices
         // make a for loop to go through the current questions answer choices
         for(let i = 0; i < questions[currentQuestion].answers.length; i++) {
-            
             // make answerChoices variable and create button element
             let answerChoices = document.createElement("button");
             // take answerChoices variable set innerHTML to empty string
@@ -106,23 +102,21 @@ if( currentQuestion === questions.length) {
             // take answerChoices variable and attach clickListeners to each button and then if clicked call a function to check if answer correct
             answerChoices.onclick = compareResponse;
         };
-};
-
-
+    };
 };
 
 // this function will compare response to add or deduct points to userScore variable and will add 5 secs to time value
-function compareResponse () {
+const compareResponse = () => {
     // compares answerChoices to 'correct' property within question object    
     if(this.innerHTML === questions[currentQuestion].correct) {
         userScoreEl ++;
         time += 5;
         answerResponseEl.innerHTML = `Correct!`;
-        progressEl.innerHTML = `You have answered correctly ${userScoreEl} out of ${questionLengthEl}.`;
+        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`;
 
     } else {
         answerResponseEl.innerHTML = `False!`;
-        progressEl.innerHTML = `You have answered correctly ${userScoreEl} out of ${questionLengthEl}.`;
+        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`;
     };
 
 // renders Next button and runs function to generate next question
@@ -130,7 +124,7 @@ nextBtn.setAttribute("style","display: block;");
 nextBtnEl.onclick = generateNextQuestion;
 };
 
-function generateNextQuestion() {
+const generateNextQuestion = () => {
 // clears questionChoicesEl container
 currentQuestion += 1;
 questionChoicesEl.innerHTML = "";
@@ -141,13 +135,13 @@ nextBtn.setAttribute("style","display: none;");
 renderQuestionContainer();
 };
 
-function displayResults () {
+const displayResults = () => {
     quizQuestionContainer.setAttribute("style","display: none;");
     resultsContainerEl.setAttribute("style", "display: block");
     userResults.innerHTML = `You answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`
 };
 
-function renderHighScores () {
+const renderHighScores = () => {
     introEl.setAttribute("style","display: none;");
     resultsContainerEl.setAttribute("style","display: none;");
     quizQuestionContainerEl.setAttribute("style","display: none;");
