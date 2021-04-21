@@ -58,7 +58,7 @@ function timerFunc(){
     }, 1000);
 };
 
-timerFunc();
+
 
 // startQuiz function will hide the intro container and display the Quiz Question Container
 function startQuiz() {
@@ -71,16 +71,22 @@ function startQuiz() {
 
 // function to render question && answers //
 function renderQuestionContainer() {
-// make sure to empty our questions container before rendering 
-
+    
 //display current question
 questionEl.innerHTML = questions[currentQuestion].question;
+
+//checks if question number has been reached -- 
+if( questions[currentQuestion] === questions[currentQuestion].answers.length-1) {
+    displayResults ();
+};
 
 //display answer choices
     // make a for loop to go through the current questions answer choices
     for(let i = 0; i < questions[currentQuestion].answers.length; i++) {
+        
         // make answerChoices variable and create button element
         let answerChoices = document.createElement("button");
+        
         // take answerChoices variable set innerHTML to empty string
         answerChoices.innerHTML = "";
         // take answerChoices variable and add innerHTML the current loop's question text index number
@@ -89,32 +95,48 @@ questionEl.innerHTML = questions[currentQuestion].question;
         questionChoicesEl.append(answerChoices);
         // take answerChoices variable and attach clickListeners to each button and then if clicked call a function to check if answer correct
         answerChoices.onclick = compareResponse;
+        
     }
-
-
-
-
     
 };
+
+// this function will render the next question after 1 second
 
 // this function will add or deduct points to user Score and will add 15 secs to timerFunc
 function compareResponse () {
     // compares answerChoices to 'correct' property within question object    
     if(this.innerHTML === questions[currentQuestion].correct) {
         userScoreEl ++;
-        time += 10;
+        time += 5;
         answerResponseEl.innerHTML = `Correct!`;
-        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl}`;
+        progressEl.innerHTML = `You have answered correctly ${userScoreEl} out of ${questionLengthEl}.`;
+
     } else {
-        answerResponseEl.innerHTML = `False!`
-        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl}`;
-        
-    }
+        answerResponseEl.innerHTML = `False!`;
+        progressEl.innerHTML = `You have answered correctly ${userScoreEl} out of ${questionLengthEl}.`;
+    };
+
+// renders Next button and loads up function to generate next question
+var nextBtn = document.createElement("button");
+nextBtn.innerHTML = "Next";
+quizQuestionContainerEl.append(nextBtn);
+nextBtn.onclick = generateNextQuestion;
+
 };
 
-function displayResults () {
-    quizQuestionContainerEl.setAttribute("style", "display: block");
+function generateNextQuestion() {
+// clears quizQuestion container
+currentQuestion += 1;
+questionChoicesEl.innerHTML = "";
+answerResponseEl.innerHTML = "";
+progressEl.innerHTML = "";
 
+renderQuestionContainer();
+
+}
+
+function displayResults () {
+    resultsContainerEl.setAttribute("style", "display: block");
 }
 
 // event listener functions//
