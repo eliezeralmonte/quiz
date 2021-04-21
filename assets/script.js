@@ -144,8 +144,7 @@ renderQuestionContainer();
 function displayResults () {
     quizQuestionContainer.setAttribute("style","display: none;");
     resultsContainerEl.setAttribute("style", "display: block");
-    if(userScoreEl > 1) {userResults.innerHTML = `You answered ${userScoreEl} questions correctly out of ${questionLengthEl}.`
-    } else { userResults.innerHTML = `You answered ${userScoreEl} question correctly out of ${questionLengthEl}.`}
+    userResults.innerHTML = `You answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`
 };
 
 function renderHighScores () {
@@ -158,4 +157,3 @@ function renderHighScores () {
 // event listener functions//
 highScoresButtonEl.addEventListener ("click", renderHighScores);
 startButtonEl.addEventListener("click", startQuiz);
-// nextQuestionButtonEl.addEventListener("click", rendernextQuestion;
