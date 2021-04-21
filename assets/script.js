@@ -18,6 +18,7 @@ var questionChoicesEl = document.querySelector(".questionsClass");
 // var btn3El = document.querySelector ("#btn3");
 var progressEl = document.querySelector("#progress");
 var answerResponseEl = document.querySelector("#answerResponse");
+var nextBtnEl = document.querySelector("#nextBtn");
 
 //results//
 var resultsContainerEl = document.querySelector("#resultsContainer");
@@ -37,9 +38,19 @@ var questions = [
         correct: "Strings, Numbers, BigInts, Boolean, Undefined, Symbol, and Null"
     },
     {
-        question: "??", 
-        answers: ["a","b","c"], 
-        correct: "b"
+        question: "Select the option that has at least one feature from Javascript ES6", 
+        answers: ["Arrow Functions, Recursion, Full-Stack","In-line Styling, Function Declaration, Function Expression","c"], 
+        correct: "Arrow Functions, Recursion, Full-Stack"
+    },
+    {
+        question: "Which of the following forms up the Web Trifecta?", 
+        answers: ["HTML, Javascript & Python","HTML, CSS & Java, HTML, CSS & Javascript","Express, Node.js & React"], 
+        correct: "Arrow Functions, Recursion, Full-Stack"
+    },
+    {
+        question: "Select the option that has at least one feature from Javascript ES6", 
+        answers: ["Arrow Functions, Recursion, Full-Stack","In-line Styling, Function Declaration, Function Expression","c"], 
+        correct: "Arrow Functions, Recursion, Full-Stack"
     }
 ];
 
@@ -76,7 +87,7 @@ function renderQuestionContainer() {
 questionEl.innerHTML = questions[currentQuestion].question;
 
 //checks if question number has been reached -- 
-if( questions[currentQuestion] === questions[currentQuestion].answers.length-1) {
+if( questions[currentQuestion] === questions[currentQuestion].answers.length) {
     displayResults ();
 };
 
@@ -116,20 +127,19 @@ function compareResponse () {
         progressEl.innerHTML = `You have answered correctly ${userScoreEl} out of ${questionLengthEl}.`;
     };
 
-// renders Next button and loads up function to generate next question
-var nextBtn = document.createElement("button");
-nextBtn.innerHTML = "Next";
-quizQuestionContainerEl.append(nextBtn);
-nextBtn.onclick = generateNextQuestion;
+// renders Next button and runs function to generate next question
+nextBtn.setAttribute("style","display: block;");
+nextBtnEl.onclick = generateNextQuestion;
 
 };
 
 function generateNextQuestion() {
-// clears quizQuestion container
+// clears questionChoicesEl container
 currentQuestion += 1;
 questionChoicesEl.innerHTML = "";
 answerResponseEl.innerHTML = "";
 progressEl.innerHTML = "";
+nextBtn.setAttribute("style","display: none;");
 
 renderQuestionContainer();
 
