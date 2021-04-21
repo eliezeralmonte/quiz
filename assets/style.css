@@ -139,7 +139,9 @@ button:hover {
 
 
 .resultsClass {
-
+    font-family: 'Open Sans', sans-serif;
+    font-size: 2rem;
+    color: white;
 }
 
 .highscoresClass {
