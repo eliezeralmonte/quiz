@@ -2,33 +2,31 @@
 //-------------------------------------------------------------------------------------------------------------------------------------//
 
 //header//
-var highScoresButtonEl = document.querySelector("#highScoresButton");
-var timerEl = document.querySelector("#timer");
-var startButtonEl = document.querySelector("#startButton");
-var introEl = document.querySelector("#intro");
+const highScoresButtonEl = document.querySelector("#highScoresButton");
+const timerEl = document.querySelector("#timer");
+const startButtonEl = document.querySelector("#startButton");
+const introEl = document.querySelector("#intro");
 
 //question variables //
-var quizQuestionContainerEl = document.querySelector("#quizQuestionContainer");
-var questionEl = document.querySelector("#question");
-var questionChoicesEl = document.querySelector(".questionsClass");
-var progressEl = document.querySelector("#progress");
-var answerResponseEl = document.querySelector("#answerResponse");
-var nextBtnEl = document.querySelector("#nextBtn");
+const quizQuestionContainerEl = document.querySelector("#quizQuestionContainer");
+const questionEl = document.querySelector("#question");
+const questionChoicesEl = document.querySelector(".questionsClass");
+const progressEl = document.querySelector("#progress");
+const answerResponseEl = document.querySelector("#answerResponse");
+const nextBtnEl = document.querySelector("#nextBtn");
 
 //results//
-var highScoresContainerEl = document.querySelector("#highScoresContainer");
-var resultsContainerEl = document.querySelector("#resultsContainer");
-var userScoreEl = document.querySelector("#userScore");
-var questionLengthEl = document.querySelector("#questionsLength");
-var userResults = document.querySelector("#userResults");
+const highScoresContainerEl = document.querySelector("#highScoresContainer");
+const resultsContainerEl = document.querySelector("#resultsContainer");
+const userResults = document.querySelector("#userResults");
 
 // global variables || questions array or object//
-var userScoreEl = 0;
-var currentQuestion = 0;
-var time = 15;
+let userScoreEl = 0;
+let currentQuestion = 0;
+let time = 15;
 
 //questions array
-var questions = [
+let questions = [
     {   
         question: "What are the main primitive data types in Javascript?",
         answers: ["Strings, Numbers, BigInts, Boolean, Undefined, Symbol, and Null", "Ghosts, Warhogs, Tanks and Banshees", "Blue Team, Noble Team, ODST, and Spartans", "Paragraphs, Text Blocks, Equations, and Functions"], 
@@ -37,28 +35,28 @@ var questions = [
     {
         question: "Select the option that has at least one feature from Javascript ES6", 
         answers: ["Arrow Functions, Recursion, Full-Stack","In-line Styling, Function Declaration, Function Expression","c"], 
-        correct: "Arrow Functions, Recursion, Full-Stack"
+        correct: "c"
     },
     {
         question: "Which of the following forms up the Web Trifecta?", 
         answers: ["HTML, Javascript & Python","HTML, CSS & Java, HTML, CSS & Javascript","Express, Node.js & React"], 
-        correct: "Arrow Functions, Recursion, Full-Stack"
+        correct: "Express, Node.js & React"
     },
     {
         question: "Select the option that has at least one feature from Javascript ES6", 
         answers: ["Arrow Functions, Recursion, Full-Stack","In-line Styling, Function Declaration, Function Expression","c"], 
-        correct: "Arrow Functions, Recursion, Full-Stack"
+        correct: "In-line Styling, Function Declaration, Function Expression"
     }
 ];
 
-var questionLengthEl = questions.length;
+let questionLengthEl = questions.length;
 
 console.log(currentQuestion);
 console.log(questions.length);
 
 // functions
 //------------------------------------------------------------------------------------------------------------------------------------//
-const timerFunc = () => {
+function timerFunc () {
     let setTimer = setInterval( function() {
         time--;
         timerEl.innerHTML = time;
@@ -70,7 +68,7 @@ const timerFunc = () => {
 };
 
 // startQuiz function will hide the intro container and display the Quiz Question Container
-const startQuiz = () => {
+function startQuiz () {
     //starts timer
     timerFunc();
     // this will hide Intro container and display quiz question container
@@ -81,7 +79,7 @@ const startQuiz = () => {
 };
 
 // function to render question && answers //
-const renderQuestionContainer = () => {
+function renderQuestionContainer () {
 //checks if question number has been reached -- 
 if (currentQuestion === questions.length) {
     displayResults ();
@@ -99,16 +97,17 @@ if (currentQuestion === questions.length) {
             answerChoices.innerHTML = questions[currentQuestion].answers[i];
             // append the answerChoices to questionChoicesEl container
             questionChoicesEl.append(answerChoices);
-            // take answerChoices variable and attach clickListeners to each button and then if clicked call a function to check if answer correct
+            // take answerChoices variable and attach clickListener to each button and then if clicked call a function to check if answer correct
             answerChoices.onclick = compareResponse;
         };
     };
 };
 
 // this function will compare response to add or deduct points to userScore variable and will add 5 secs to time value
-const compareResponse = () => {
-    // compares answerChoices to 'correct' property within question object    
-    if(this.innerHTML === questions[currentQuestion].correct) {
+function compareResponse () {
+    // compares answerChoices to 'correct' property within question object
+    
+    if( this.textContent === questions[currentQuestion].correct ) {
         userScoreEl ++;
         time += 5;
         answerResponseEl.innerHTML = `Correct!`;
