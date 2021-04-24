@@ -14,16 +14,23 @@ const questionChoicesEl = document.querySelector(".questionsClass");
 const progressEl = document.querySelector("#progress");
 const answerResponseEl = document.querySelector("#answerResponse");
 const nextBtnEl = document.querySelector("#nextBtn");
+const correctAnswerEl = document.querySelector("#correctAnswer");
 
 //results//
 const highScoresContainerEl = document.querySelector("#highScoresContainer");
 const resultsContainerEl = document.querySelector("#resultsContainer");
 const userResults = document.querySelector("#userResults");
+const submitLocalStorageBtn = document.querySelector("#submitLocalStorageBtn");
+const localStorageInputText = document.querySelector ("#localStorageInput");
+const submittedTextEl = document.querySelector ("#submittedText");
 
 // global variables || questions array or object//
 let userScoreEl = 0;
 let currentQuestion = 0;
 let time = 15;
+
+const textPlaceholder = [];
+const userScoreHolder = [];
 
 //questions array
 let questions = [
@@ -56,7 +63,7 @@ console.log(questions.length);
 
 // functions
 //------------------------------------------------------------------------------------------------------------------------------------//
-function timerFunc () {
+const timerFunc = () => {
     let setTimer = setInterval( function() {
         time--;
         timerEl.innerHTML = time;
@@ -68,7 +75,7 @@ function timerFunc () {
 };
 
 // startQuiz function will hide the intro container and display the Quiz Question Container
-function startQuiz () {
+const startQuiz = () => {
     //starts timer
     timerFunc();
     // this will hide Intro container and display quiz question container
@@ -79,7 +86,7 @@ function startQuiz () {
 };
 
 // function to render question && answers //
-function renderQuestionContainer () {
+const renderQuestionContainer = () => {
 //checks if question number has been reached -- 
 if (currentQuestion === questions.length) {
     displayResults ();
@@ -118,6 +125,9 @@ function compareResponse () {
         progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`;
     };
 
+// displays correct response by unhiding correctResponse element
+correctAnswerEl.setAttribute ("style", "display: block; font-weight: bold;");
+correctAnswerEl.innerHTML = `Correct answer was: ${questions[currentQuestion].correct}`;
 // renders Next button and runs function to generate next question
 nextBtn.setAttribute("style","display: block;");
 nextBtnEl.onclick = generateNextQuestion;
@@ -129,6 +139,7 @@ currentQuestion += 1;
 questionChoicesEl.innerHTML = "";
 answerResponseEl.innerHTML = "";
 progressEl.innerHTML = "";
+correctAnswerEl.innerHTML = "";
 nextBtn.setAttribute("style","display: none;");
 
 renderQuestionContainer();
@@ -137,6 +148,7 @@ renderQuestionContainer();
 const displayResults = () => {
     quizQuestionContainer.setAttribute("style","display: none;");
     resultsContainerEl.setAttribute("style", "display: block");
+    
     userResults.innerHTML = `You answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`
 };
 
@@ -147,6 +159,20 @@ const renderHighScores = () => {
     highScoresContainerEl.setAttribute("style","display: block;");
 };
 
+const storeLocalStorageParams = (key, value) => {
+    localStorage.setItem ("input", )
+}
+
+const submitLocalStorageFunc = (e) => {
+    e.preventDefault();
+    submittedTextEl.setAttribute("style", "display: block");
+    
+    localStorage.setItem ("userScoreEl", userScoreEl);
+    localStorage.setItem ("localStorageInputText", localStorageInputText.value);
+    
+};
+
 // event listener functions//
 highScoresButtonEl.addEventListener ("click", renderHighScores);
 startButtonEl.addEventListener("click", startQuiz);
+submitLocalStorageBtn.addEventListener ("click", submitLocalStorageFunc);

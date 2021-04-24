@@ -30,13 +30,26 @@
             <br>
             <p id="answerResponse"></p>
             <br>
+            <p id="correctAnswer" style="display:none;"></p>
+            <br>
             <p id="progress"></p>
+            
             <button id="nextBtn" style="display:none;">Next</button>
         </section>
         <section id="resultsContainer" class="containerClass results" style="display: none">
             <p id="userResults" style="font-size: 2rem;"></p>
+            <form>
+                <label for="userInput">
+                    <p>Enter your initials:</p>
+                    <input id="localStorageInput" type="text" placeholder="Your initials" style="height: 30px;">
+                    <button id="submitLocalStorageBtn">Submit</button>
+                </label>
+            </form>
+            <p id="userResults" style="font-size: 2rem;"></p>
+            <p id="submittedText" style="display: none;">You have saved your Score!</p> 
         </section>
         <section id="highScoresContainer" class="containerClass highscores" style="display: none">
+            
         </section>
     </main>
     <script src="assets/script.js"></script>
