@@ -2,7 +2,7 @@
 //-------------------------------------------------------------------------------------------------------------------------------------//
 
 //JSON File//
-var scores = JSON.parse(localStorage.getItem("scoresLS"));
+var scores = JSON.parse(localStorage.getItem("scoresLS")) || [];
 
 //header//
 var highScoresButtonEl = document.querySelector("#highScoresButton");
@@ -160,8 +160,8 @@ function renderHighScores () {
 function addScoretoLS (e) {
     //prevent default behavior
     e.preventDefault();
-    // parse scoresLS out from stringifying
-    scores = JSON.parse(localStorage.getItem("scoresLS")) || [];
+    // parsing JSON file in order to access it and store it variable
+    localStorageArr = scores; 
     // displays message to user
     submittedTextEl.setAttribute("style", "display: block");
 // create new object from userInput and push into localStorageArr
@@ -173,6 +173,8 @@ function addScoretoLS (e) {
     localStorageArr.push(newScore);
     //set localStorage Array as local storage element
     localStorage.setItem ("scoresLS", JSON.stringify(localStorageArr));
+
+    
 };
 
 // event listener functions//
