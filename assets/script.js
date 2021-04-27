@@ -1,39 +1,40 @@
 // variable declaration//
 //-------------------------------------------------------------------------------------------------------------------------------------//
 
+//JSON File//
+var scores = JSON.parse(localStorage.getItem("scoresLS"));
+
 //header//
-const highScoresButtonEl = document.querySelector("#highScoresButton");
-const timerEl = document.querySelector("#timer");
-const startButtonEl = document.querySelector("#startButton");
-const introEl = document.querySelector("#intro");
+var highScoresButtonEl = document.querySelector("#highScoresButton");
+var timerEl = document.querySelector("#timer");
+var startButtonEl = document.querySelector("#startButton");
+var introEl = document.querySelector("#intro");
 
 //question variables //
-const quizQuestionContainerEl = document.querySelector("#quizQuestionContainer");
-const questionEl = document.querySelector("#question");
-const questionChoicesEl = document.querySelector(".questionsClass");
-const progressEl = document.querySelector("#progress");
-const answerResponseEl = document.querySelector("#answerResponse");
-const nextBtnEl = document.querySelector("#nextBtn");
-const correctAnswerEl = document.querySelector("#correctAnswer");
+var quizQuestionContainerEl = document.querySelector("#quizQuestionContainer");
+var questionEl = document.querySelector("#question");
+var questionChoicesEl = document.querySelector(".questionsClass");
+var progressEl = document.querySelector("#progress");
+var answerResponseEl = document.querySelector("#answerResponse");
+var nextBtnEl = document.querySelector("#nextBtn");
+var correctAnswerEl = document.querySelector("#correctAnswer");
 
 //results//
-const highScoresContainerEl = document.querySelector("#highScoresContainer");
-const resultsContainerEl = document.querySelector("#resultsContainer");
-const userResults = document.querySelector("#userResults");
-const submitLocalStorageBtn = document.querySelector("#submitLocalStorageBtn");
-const localStorageInputText = document.querySelector ("#localStorageInput");
-const submittedTextEl = document.querySelector ("#submittedText");
+var highScoresContainerEl = document.querySelector("#highScoresContainer");
+var resultsContainerEl = document.querySelector("#resultsContainer");
+var userResults = document.querySelector("#userResults");
+var submitLocalStorageBtn = document.querySelector("#submitLocalStorageBtn");
+var userInitialsEl = document.querySelector ("#userInitials");
+var submittedTextEl = document.querySelector ("#submittedText");
 
-// global variables || questions array or object//
-let userScoreEl = 0;
-let currentQuestion = 0;
-let time = 15;
-
-const textPlaceholder = [];
-const userScoreHolder = [];
+// global variables
+var userScoreEl = 0;
+var currentQuestion = 0;
+var time = 15;
+var localStorageArr = []; 
 
 //questions array
-let questions = [
+var questions = [
     {   
         question: "What are the main primitive data types in Javascript?",
         answers: ["Strings, Numbers, BigInts, Boolean, Undefined, Symbol, and Null", "Ghosts, Warhogs, Tanks and Banshees", "Blue Team, Noble Team, ODST, and Spartans", "Paragraphs, Text Blocks, Equations, and Functions"], 
@@ -56,15 +57,12 @@ let questions = [
     }
 ];
 
-let questionLengthEl = questions.length;
-
-console.log(currentQuestion);
-console.log(questions.length);
+var questionLengthEl = questions.length;
 
 // functions
 //------------------------------------------------------------------------------------------------------------------------------------//
-const timerFunc = () => {
-    let setTimer = setInterval( function() {
+function timerFunc () {
+    var setTimer = setInterval( function() {
         time--;
         timerEl.innerHTML = time;
         if(time === 0) {
@@ -75,7 +73,7 @@ const timerFunc = () => {
 };
 
 // startQuiz function will hide the intro container and display the Quiz Question Container
-const startQuiz = () => {
+function startQuiz () {
     //starts timer
     timerFunc();
     // this will hide Intro container and display quiz question container
@@ -86,7 +84,7 @@ const startQuiz = () => {
 };
 
 // function to render question && answers //
-const renderQuestionContainer = () => {
+function renderQuestionContainer () {
 //checks if question number has been reached -- 
 if (currentQuestion === questions.length) {
     displayResults ();
@@ -118,11 +116,11 @@ function compareResponse () {
         userScoreEl ++;
         time += 5;
         answerResponseEl.innerHTML = `Correct!`;
-        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`;
+        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl} questions correctly!`;
 
     } else {
         answerResponseEl.innerHTML = `False!`;
-        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`;
+        progressEl.innerHTML = `You have answered ${userScoreEl} out of ${questionLengthEl} questions correctly!`;
     };
 
 // displays correct response by unhiding correctResponse element
@@ -133,7 +131,7 @@ nextBtn.setAttribute("style","display: block;");
 nextBtnEl.onclick = generateNextQuestion;
 };
 
-const generateNextQuestion = () => {
+function generateNextQuestion () {
 // clears questionChoicesEl container
 currentQuestion += 1;
 questionChoicesEl.innerHTML = "";
@@ -145,34 +143,39 @@ nextBtn.setAttribute("style","display: none;");
 renderQuestionContainer();
 };
 
-const displayResults = () => {
+function displayResults () {
     quizQuestionContainer.setAttribute("style","display: none;");
     resultsContainerEl.setAttribute("style", "display: block");
     
     userResults.innerHTML = `You answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`
 };
 
-const renderHighScores = () => {
+function renderHighScores () {
     introEl.setAttribute("style","display: none;");
     resultsContainerEl.setAttribute("style","display: none;");
     quizQuestionContainerEl.setAttribute("style","display: none;");
     highScoresContainerEl.setAttribute("style","display: block;");
 };
 
-const storeLocalStorageParams = (key, value) => {
-    localStorage.setItem ("input", )
-}
-
-const submitLocalStorageFunc = (e) => {
+function addScoretoLS (e) {
+    //prevent default behavior
     e.preventDefault();
+    // parse scoresLS out from stringifying
+    scores = JSON.parse(localStorage.getItem("scoresLS")) || [];
+    // displays message to user
     submittedTextEl.setAttribute("style", "display: block");
-    
-    localStorage.setItem ("userScoreEl", userScoreEl);
-    localStorage.setItem ("localStorageInputText", localStorageInputText.value);
-    
+// create new object from userInput and push into localStorageArr
+    var newScore = {
+    score: userScoreEl,
+    initials: userInitialsEl.value
+    };
+
+    localStorageArr.push(newScore);
+    //set localStorage Array as local storage element
+    localStorage.setItem ("scoresLS", JSON.stringify(localStorageArr));
 };
 
 // event listener functions//
 highScoresButtonEl.addEventListener ("click", renderHighScores);
 startButtonEl.addEventListener("click", startQuiz);
-submitLocalStorageBtn.addEventListener ("click", submitLocalStorageFunc);
+submitLocalStorageBtn.addEventListener ("click", addScoretoLS);
