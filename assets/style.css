@@ -93,6 +93,7 @@ button:hover {
     font-family: 'Open Sans', sans-serif;
     font-size: var(--global-paragraph-size);
     color: white;
+    text-decoration: none;
 }
 
 .containerClass h2 {

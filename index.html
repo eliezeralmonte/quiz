@@ -40,7 +40,7 @@
             <p id="userResults" style="font-size: 2rem;"></p>
             <form>
                 <label for="userInput">
-                    <p>Enter your initials:</p>
+                    <p id="enterInitialsText">Enter your initials:</p>
                     <input id="userInitials" type="text" placeholder="Your initials" style="height: 30px;">
                     <button id="submitLocalStorageBtn">Submit</button>
                 </label>
@@ -49,7 +49,9 @@
             <p id="submittedText" style="display: none;">You have saved your Score!</p> 
         </section>
         <section id="highScoresContainer" class="containerClass highscores" style="display: none">
-            
+            <h2>High Scores</h2>
+            <ul id="scoresList"></ul>
+            <button id="gameResetBtn">Try Again</button>
         </section>
     </main>
     <script src="assets/script.js"></script>

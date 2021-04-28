@@ -26,6 +26,9 @@ var userResults = document.querySelector("#userResults");
 var submitLocalStorageBtn = document.querySelector("#submitLocalStorageBtn");
 var userInitialsEl = document.querySelector ("#userInitials");
 var submittedTextEl = document.querySelector ("#submittedText");
+var scoresListEl = document.querySelector ("#scoresList");
+var gameResetBtn = document.querySelector ("#gameResetBtn");
+var enterInitialsText = document.querySelector ("#enterInitialsText");
 
 // global variables
 var userScoreEl = 0;
@@ -126,19 +129,20 @@ function compareResponse () {
 // displays correct response by unhiding correctResponse element
 correctAnswerEl.setAttribute ("style", "display: block; font-weight: bold;");
 correctAnswerEl.innerHTML = `Correct answer was: ${questions[currentQuestion].correct}`;
+generateNextQuestion ();
 // renders Next button and runs function to generate next question
-nextBtn.setAttribute("style","display: block;");
-nextBtnEl.onclick = generateNextQuestion;
+// nextBtn.setAttribute("style","display: block;");
+// nextBtnEl.onclick = generateNextQuestion;
 };
+
 
 function generateNextQuestion () {
 // clears questionChoicesEl container
 currentQuestion += 1;
 questionChoicesEl.innerHTML = "";
 answerResponseEl.innerHTML = "";
-progressEl.innerHTML = "";
-correctAnswerEl.innerHTML = "";
-nextBtn.setAttribute("style","display: none;");
+
+// nextBtn.setAttribute("style","display: none;");
 
 renderQuestionContainer();
 };
@@ -151,10 +155,20 @@ function displayResults () {
 };
 
 function renderHighScores () {
+
+    //hides current elements on page
     introEl.setAttribute("style","display: none;");
     resultsContainerEl.setAttribute("style","display: none;");
     quizQuestionContainerEl.setAttribute("style","display: none;");
     highScoresContainerEl.setAttribute("style","display: block;");
+
+    // renders lis within ul containing the text input and the value stores within score variable
+    let scoresArray = scores || [];
+    for (let i = 0; i<= 10; i++) {
+        let liEl = document.createElement ("li");
+        liEl.innerHTML = `${scoresArray[i].initials}: ${scoresArray[i].score}`;
+        scoresListEl.append(liEl);
+    };
 };
 
 function addScoretoLS (e) {
@@ -174,10 +188,24 @@ function addScoretoLS (e) {
     //set localStorage Array as local storage element
     localStorage.setItem ("scoresLS", JSON.stringify(localStorageArr));
 
-    
+    //render try again btn
+    let tryAgainBtn = document.createElement ("button");
+    tryAgainBtn.innerHTML = "Try Again"
+    resultsContainerEl.append (tryAgainBtn);
+    tryAgainBtn.onclick = gameReset;
+
+    //hides text input and submit btn
+    userInitialsEl.setAttribute("style", "display: none");
+    submitLocalStorageBtn.setAttribute("style", "display: none");
+    enterInitialsText.setAttribute("style", "display: none");
+};
+
+function gameReset () {
+    location.reload();
 };
 
 // event listener functions//
 highScoresButtonEl.addEventListener ("click", renderHighScores);
 startButtonEl.addEventListener("click", startQuiz);
 submitLocalStorageBtn.addEventListener ("click", addScoretoLS);
+gameResetBtn.addEventListener ("click", gameReset);
