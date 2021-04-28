@@ -149,7 +149,7 @@ renderQuestionContainer();
 
 function displayResults () {
     quizQuestionContainer.setAttribute("style","display: none;");
-    resultsContainerEl.setAttribute("style", "display: block");
+    highScoresContainerEl.setAttribute("style", "display: block");
     
     userResults.innerHTML = `You answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`
 };
