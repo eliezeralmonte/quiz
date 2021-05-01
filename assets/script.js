@@ -39,24 +39,24 @@ var localStorageArr = [];
 //questions array
 var questions = [
     {   
-        question: "What are the main primitive data types in Javascript?",
-        answers: ["Strings, Numbers, BigInts, Boolean, Undefined, Symbol, and Null", "Ghosts, Warhogs, Tanks and Banshees", "Blue Team, Noble Team, ODST, and Spartans", "Paragraphs, Text Blocks, Equations, and Functions"], 
-        correct: "Strings, Numbers, BigInts, Boolean, Undefined, Symbol, and Null"
+        question: "Which are primitive datatypes in Javascript?",
+        answers: ["Ghosts, Warhogs and Tanks", "Strings, Numbers, BigInts, Boolean", "Blue Team, ODST, and Spartans", "Paragraphs, Equations, and Functions"], 
+        correct: "Strings, Numbers, BigInts, Boolean"
     },
     {
-        question: "Select the option that has at least one feature from Javascript ES6", 
-        answers: ["Arrow Functions, Recursion, Full-Stack","In-line Styling, Function Declaration, Function Expression","c"], 
-        correct: "c"
+        question: "Select the option that has at least one feature from Javascript ES6",
+        answers: ["In-line Styling, Function Declaration, Function Expression","Cortona, 343 Guilty Spark", "Arrow Functions, Recursion, Full-Stack", "Delta Halo, JS"], 
+        correct: "Arrow Functions, Recursion, Full-Stack"
     },
     {
-        question: "Which of the following forms up the Web Trifecta?", 
-        answers: ["HTML, Javascript & Python","HTML, CSS & Java, HTML, CSS & Javascript","Express, Node.js & React"], 
-        correct: "Express, Node.js & React"
+        question: "Which of the following forms up the Web Trifecta?",
+        answers: ["HTML, Javascript & Python","HTML, CSS & Java", "HTML, CSS & Javascript","Express, Node.js & React"], 
+        correct: "HTML, CSS & Javascript"
     },
     {
-        question: "Select the option that has at least one feature from Javascript ES6", 
-        answers: ["Arrow Functions, Recursion, Full-Stack","In-line Styling, Function Declaration, Function Expression","c"], 
-        correct: "In-line Styling, Function Declaration, Function Expression"
+        question: "Which of the following options defines Front-End?",
+        answers: ["Server Side, Fetching, MySQL","Sequelize, MySQL & Back-End & ", "Node.js, NPM, Throw Error", "App Functionality, User Experience and Layout"], 
+        correct: "App Functionality, User Experience and Layout"
     }
 ];
 
@@ -69,8 +69,8 @@ function timerFunc () {
         time--;
         timerEl.innerHTML = time;
         if(time === 0) {
-            displayResults();
             clearInterval(setTimer);
+            displayResults();
         };
     }, 1000);
 };
@@ -130,11 +130,7 @@ function compareResponse () {
 correctAnswerEl.setAttribute ("style", "display: block; font-weight: bold;");
 correctAnswerEl.innerHTML = `Correct answer was: ${questions[currentQuestion].correct}`;
 generateNextQuestion ();
-// renders Next button and runs function to generate next question
-// nextBtn.setAttribute("style","display: block;");
-// nextBtnEl.onclick = generateNextQuestion;
 };
-
 
 function generateNextQuestion () {
 // clears questionChoicesEl container
@@ -148,8 +144,10 @@ renderQuestionContainer();
 };
 
 function displayResults () {
+    introEl.setAttribute("style","display: none;");
     quizQuestionContainer.setAttribute("style","display: none;");
-    highScoresContainerEl.setAttribute("style", "display: block");
+    highScoresContainerEl.setAttribute("style","display: none;");
+    resultsContainer.setAttribute("style", "display: block");
     
     userResults.innerHTML = `You answered ${userScoreEl} out of ${questionLengthEl} questions correctly.`
 };
